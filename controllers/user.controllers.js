@@ -79,9 +79,25 @@ const userDetails=asyncWrapper(async(req, res)=>{
   res.status(200).json({ user: userDetails });
 })
 
+/*-------------------
+@desc    get all users
+@route    POST api/v1/users/allusers
+@access  private
+*/
+
+const getAllUsers = asyncWrapper(async (req, res) => {
+  const allusers = await User.find();
+  res.status(201).json({
+    success: true,
+    message: "all users fetch  successfully",
+    data: allusers,
+  });
+});
+
 
   export const usersController = {
     register,
     login,
-    userDetails
+    userDetails,
+    getAllUsers
   };
