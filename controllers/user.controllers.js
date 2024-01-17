@@ -55,8 +55,33 @@ const register = asyncWrapper(async (req, res) => {
       res.status(401).json({ message: "Invalid email or password" });
     }
   });
+/*-------------------
+ @desc    Get user data based on the provided JWT token
+ @route   GET api/v1/users/user-details
+ @access  Private
+*/
+const userDetails=asyncWrapper(async(req, res)=>{
+  const user = req.user;
+  console.log('Authenticated User:', user)
+  // If no user is found
+  if (!user) {
+    return res.status(404).json({ message: 'User not found' });
+  }
+
+  const userDetails = {
+    _id: user._id,
+    username: user.username,
+    email: user.email,
+    role:user.role
+  };
+
+  // Sending the response with user details
+  res.status(200).json({ user: userDetails });
+})
+
 
   export const usersController = {
     register,
     login,
+    userDetails
   };
