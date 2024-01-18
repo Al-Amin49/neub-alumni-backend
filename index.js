@@ -3,6 +3,7 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 import connectDB from './config/db.js'
 import { authRoutes } from './routes/user.routes.js'
+import { alumniRoutes } from './routes/alumniDirectory.route.js'
 
 const app = express()
 dotenv.config()
@@ -17,7 +18,10 @@ app.use(cors())
 app.use(express.json())
 
 // application routes
+//user routes
 app.use('/api/v1/users', authRoutes)
+//alumni routes
+app.use('/api/v1/alumni', alumniRoutes)
 
 
 //health route
