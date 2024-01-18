@@ -4,6 +4,7 @@ import dotenv from 'dotenv'
 import connectDB from './config/db.js'
 import { authRoutes } from './routes/user.routes.js'
 import { alumniRoutes } from './routes/alumniDirectory.route.js'
+import { newsfeedRoutes } from './routes/newsfeedpost.route.js'
 
 const app = express()
 dotenv.config()
@@ -22,6 +23,8 @@ app.use(express.json())
 app.use('/api/v1/users', authRoutes)
 //alumni routes
 app.use('/api/v1/alumni', alumniRoutes)
+//newsfeed routes
+app.use('/api/v1/newsfeed', newsfeedRoutes)
 
 
 //health route

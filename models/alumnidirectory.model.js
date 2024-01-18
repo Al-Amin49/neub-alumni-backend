@@ -27,7 +27,6 @@ const alumniSchema = new mongoose.Schema({
   },
   industry: {
     type: String,
-    required: true,
   },
   interests: {
     type: [String],

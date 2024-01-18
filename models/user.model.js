@@ -16,6 +16,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    profile:{
+        type:String,
+        default:"https://randomuser.me/api/portraits/men/78.jpg"
+    },
 
     role: {
       type: String,
