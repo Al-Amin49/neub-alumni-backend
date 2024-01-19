@@ -5,6 +5,8 @@ import connectDB from './config/db.js'
 import { authRoutes } from './routes/user.routes.js'
 import { alumniRoutes } from './routes/alumniDirectory.route.js'
 import { newsfeedRoutes } from './routes/newsfeedpost.route.js'
+import { announcementRoute } from './routes/announcement.route.js'
+import { libraryResouceRoute } from './routes/libraryresource.route.js'
 
 const app = express()
 dotenv.config()
@@ -25,6 +27,11 @@ app.use('/api/v1/users', authRoutes)
 app.use('/api/v1/alumni', alumniRoutes)
 //newsfeed routes
 app.use('/api/v1/newsfeed', newsfeedRoutes)
+//announcements routes
+app.use('/api/v1/announcements', announcementRoute)
+//library routes
+app.use('/api/v1/resources', libraryResouceRoute)
+
 
 
 //health route
