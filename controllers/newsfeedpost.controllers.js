@@ -92,9 +92,70 @@ const commentOnNewsFeedPost = asyncWrapper(async (req, res) => {
     });
   });
 
+/*
+  @desc    Update a specific news feed post's content by ID
+  @route   PATCH /api/v1/newsfeed/:id
+  @access  Private
+*/
+const updateNewsFeedPostContent = asyncWrapper(async (req, res) => {
+  const { content , image} = req.body;
+
+  if (!content || typeof content !== 'string') {
+    return res.status(400).json({
+      success: false,
+      message: 'Invalid content format',
+    });
+  }
+
+  const updatedPost = await NewsFeedPost.findByIdAndUpdate(
+    req.params.id,
+    { content, image },
+    { new: true }
+  );
+
+  if (!updatedPost) {
+    return res.status(404).json({
+      success: false,
+      message: 'News feed post not found',
+    });
+  }
+
+  res.status(200).json({
+    success: true,
+    message: 'News feed post content updated successfully',
+    data: updatedPost,
+  });
+});
+
+/*
+  @desc    Delete a specific news feed post by ID
+  @route   DELETE /api/v1/newsfeed/:id
+  @access  Private
+*/
+const deleteNewsFeedPost = asyncWrapper(async (req, res) => {
+  const deletedPost = await NewsFeedPost.findByIdAndDelete(req.params.id);
+
+  if (!deletedPost) {
+    return res.status(404).json({
+      success: false,
+      message: 'News feed post not found',
+    });
+  }
+
+  res.status(200).json({
+    success: true,
+    message: 'News feed post deleted successfully',
+    data: deletedPost,
+  });
+});
+
+
 export const newsfeedController = {
   getAllNewsFeed,
   addNewsFeedPost,
   likeNewsFeedPost,
   commentOnNewsFeedPost,
+updateNewsFeedPostContent,
+deleteNewsFeedPost
+
 };
