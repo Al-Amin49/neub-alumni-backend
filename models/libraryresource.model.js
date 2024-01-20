@@ -21,7 +21,6 @@ const libraryresouceSchema = new mongoose.Schema({
   uploadedBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    required: true,
   },
   createdAt: {
     type: Date,
@@ -30,7 +29,6 @@ const libraryresouceSchema = new mongoose.Schema({
   createdBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User', 
-    required: true,
   },
 
 }
