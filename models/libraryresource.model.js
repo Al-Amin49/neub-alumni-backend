@@ -15,7 +15,7 @@ const libraryresouceSchema = new mongoose.Schema({
     required: true,
   },
   fileUrl: {
-    type: String, // You can store a link to the PDF or the actual file data
+    type: String, 
     required: true,
   },
   uploadedBy: {
@@ -23,9 +23,18 @@ const libraryresouceSchema = new mongoose.Schema({
     ref: 'User',
     required: true,
   },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+  createdBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User', 
+    required: true,
+  },
 
-},
-{timestamps:true}
+}
+
 
 );
 

@@ -22,7 +22,7 @@ const getResources = asyncWrapper(async (req, res) => {
   @access  Private
 */
 const createResource = asyncWrapper(async (req, res) => {
-  const { title, category, description, fileUrl } = req.body;
+  const { title, category, description, fileUrl, uploadedBy } = req.body;
   const createdBy = req.user.id; // Assuming you have authentication middleware
 
   const resource = await LibraryResource.create({
@@ -31,6 +31,7 @@ const createResource = asyncWrapper(async (req, res) => {
     description,
     fileUrl,
     createdBy,
+    uploadedBy
   });
 
   res.status(201).json({
