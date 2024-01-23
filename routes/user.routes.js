@@ -12,6 +12,8 @@ router.post('/login', usersController.login)
 router.get('/user-details',authMiddleware, usersController.userDetails)
 //get all user by admin
 router.get('/allusers',authMiddleware,isAdmin,  usersController.getAllUsers)
+//serch all users
+router.get('/', authMiddleware, usersController.searchAllUsers)
 
 
 export const authRoutes=router;

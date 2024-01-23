@@ -94,10 +94,30 @@ const getAllUsers = asyncWrapper(async (req, res) => {
   });
 });
 
+ /*-------------------
+  @desc    search all user
+  @route    get api/v1/users?search=al-amin
+  @access  private
+  */
+  const searchAllUsers = asyncWrapper(async (req, res) => {
+    const keyword = req.query.search
+      ? {
+          $or: [
+            { username: { $regex: req.query.search, $options: "i" } },
+            { email: { $regex: req.query.search, $options: "i" } },
+          ],
+        }
+      : {};
+  
+    const users = await User.find(keyword).find({ _id: { $ne: req.user._id } });
+    res.send(users);
+    
+  });
 
   export const usersController = {
     register,
     login,
     userDetails,
-    getAllUsers
+    getAllUsers,
+    searchAllUsers
   };
