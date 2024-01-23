@@ -9,16 +9,16 @@ const router= express.Router();
  // Fetch all the chats for the authenticated user
 router.route("/").get(authMiddleware, chatControllers.fetchChats);
 
-// // Create a new group chat
-// router.route("/group").post(authMiddleware, createGroupChat);
+//  Create a new group chat
+ router.route("/group").post(authMiddleware, chatControllers.createGroupChat);
 
-// // Rename an existing group chat
-// router.route("/rename").put(authMiddleware, renameGroup);
+// Rename an existing group chat
+ router.route("/rename-group").put(authMiddleware, chatControllers.renameGroup);
 
-// // Remove a user from a group chat
-// router.route("/groupremove").put(authMiddleware, removeFromGroup);
-
-// // Add a user to a group chat
-// router.route("/groupadd").put(authMiddleware, addToGroup);
+// Remove a user from a group chat
+ router.route("/groupremove").put(authMiddleware, chatControllers.removeFromGroup);
+ 
+ // Add a user to a group chat
+ router.route("/groupadd").put(authMiddleware, chatControllers.addToGroup);
 
 export const chatRoutes= router
