@@ -8,6 +8,7 @@ import { newsfeedRoutes } from './routes/newsfeedpost.route.js'
 import { announcementRoute } from './routes/announcement.route.js'
 import { libraryResouceRoute } from './routes/libraryresource.route.js'
 import { chatRoutes } from './routes/chat.route.js'
+import { messageRoutes } from './routes/message.routes.js'
 
 const app = express()
 dotenv.config()
@@ -34,7 +35,8 @@ app.use('/api/v1/announcements', announcementRoute)
 app.use('/api/v1/resources', libraryResouceRoute)
 //chat routes
 app.use('/api/v1/chats', chatRoutes)
-
+//message routes
+app.use('/api/v1/message',messageRoutes)
 
 
 
